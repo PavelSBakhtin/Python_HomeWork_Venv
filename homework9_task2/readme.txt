@@ -1,3 +1,0 @@
-my_first_bot_test
-for_test_my_first_bot
-5584760235:AAEbgy8mg6-K0dmy1nnfM0X3vutuVplix30
