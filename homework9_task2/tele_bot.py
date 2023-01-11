@@ -8,7 +8,8 @@ logging.basicConfig(level=logging.INFO)
 with open("info.txt", "r") as f:
     text = f.readline()
 TOKEN = str(text)
-MSG = "{}, how are you feeling today? ({}, {})"
+MSG = "{}, left before happiness {}..."
+MSGF = "Happy new day!"
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot=bot)
@@ -21,10 +22,15 @@ async def start_handler(message: types.Message):
     logging.info(f'{user_id=} {user_full_name=} {time.asctime()}')
     await message.reply(f"Hi, {user_full_name}!")
 
-    for i in range(7):
-        time.sleep(60*60*24)
-        k = i + 1
-        await bot.send_message(user_id, MSG.format(user_name, datetime.datetime.now().strftime('%a'), k))
+    for i in range(6):
+        time.sleep(1)
+        k = abs(i - 5)
+        await bot.send_message(user_id, MSG.format(user_name, k))
+        # k = i + 1
+        # await bot.send_message(user_id, MSG.format(user_name, datetime.datetime.now().strftime('%a'), k))
+
+    time.sleep(1)
+    await bot.send_message(user_id, MSGF)
 
 if __name__ == '__main__':
     executor.start_polling(dp)
