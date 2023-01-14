@@ -1,0 +1,4 @@
+2023-01-15 01:38:31,257: INFO _welcome-362 Bot: my_first_bot_test [@for_test_my_first_bot]
+2023-01-15 01:38:31,257: INFO start_polling-358 Start polling.
+2023-01-15 01:42:57,823: INFO stop_polling-433 Stop polling...
+2023-01-15 01:42:57,825: WARNING start_polling-329 Goodbye!
