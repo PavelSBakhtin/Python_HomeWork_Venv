@@ -14,7 +14,6 @@ MSG = "{}, choose an action:"
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot=bot)
 
-
 @dp.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
     user_id = message.from_user.id
@@ -25,18 +24,16 @@ async def start_handler(message: types.Message):
     logging.info(f'{user_id=} {user_bot=} {user_message=}')
     await message.reply(f"Hi, {user_full_name}!")
     time.sleep(1)
-    # btns = types.InlineKeyboardMarkup(row_width=2)
-    # btn_calc = types.InlineKeyboardButton('calculator', callback_data='calc')
-    # btn_out = types.InlineKeyboardButton('quit', callback_data='out')
-    # btns.add(btn_calc, btn_out)
-    # await bot.send_message(user_id, MSG.format(user_name), reply_markup=btns)
+    btns = types.ReplyKeyboardMarkup(row_width=2)
+    btn_calc = types.KeyboardButton('/calculator')
+    btn_out = types.KeyboardButton('/quit')
+    btns.add(btn_calc, btn_out)
+    await bot.send_message(user_id, MSG.format(user_name), reply_markup=btns)
 
-
-# @dp.callback_query_handler(lambda c: c.data == 'out')
-# async def callback_btn_out(callback_query: types.CallbackQuery):
-#     await bot.answer_callback_query(callback_query.id)
-#     await bot.send_message(callback_query.from_user.id, 'Goodbye! See you...',
-#                            reply_markup=types.ReplyKeyboardRemove())
+@dp.message_handler(commands=['quit'])
+async def quit_handler(message: types.Message):
+    await bot.send_message(message.from_user.id, 'Goodbye! See you...',
+                           reply_markup=types.ReplyKeyboardRemove())
 
 value = ""
 old_value = ""
@@ -62,21 +59,13 @@ keyboard.row(types.InlineKeyboardButton("0", callback_data="0"),
              types.InlineKeyboardButton(")", callback_data=")"),
              types.InlineKeyboardButton("=", callback_data="="))
 
-
-# @dp.callback_query_handler(lambda c: c.data == 'calc')
-# async def callback_btn_calc(callback_query: types.CallbackQuery):
-#     await bot.answer_callback_query(callback_query.id)
-#     await bot.send_message(callback_query.from_user.id, 'I open the calculator',
-#                            reply_markup=keyboard)
-
-
 @dp.message_handler(commands=['calculator'])
 async def start_handler(message: types.Message):
+    await bot.send_message(message.from_user.id, "I open the calculator")
     if value == "":
         await bot.send_message(message.from_user.id, "0", reply_markup=keyboard)
     else:
         await bot.send_message(message.from_user.id, value, reply_markup=keyboard)
-
 
 @dp.callback_query_handler(lambda c: True)
 async def callback_calc(query):
@@ -114,7 +103,6 @@ async def callback_calc(query):
 
     if value == "Error":
         value = ""
-
 
 if __name__ == '__main__':
     executor.start_polling(dp)

@@ -1,4 +1,21 @@
-2023-01-15 01:38:31,257: INFO _welcome-362 Bot: my_first_bot_test [@for_test_my_first_bot]
-2023-01-15 01:38:31,257: INFO start_polling-358 Start polling.
-2023-01-15 01:42:57,823: INFO stop_polling-433 Stop polling...
-2023-01-15 01:42:57,825: WARNING start_polling-329 Goodbye!
+2023-01-15 03:53:12,543: INFO _welcome-362 Bot: my_first_bot_test [@for_test_my_first_bot]
+2023-01-15 03:53:12,543: INFO start_polling-358 Start polling.
+2023-01-15 03:53:14,388: INFO start_handler-24 user_id=2063273849 user_bot=False user_message='/start'
+2023-01-15 03:53:24,426: ERROR default_exception_handler-1707 Task exception was never retrieved
+future: <Task finished name='Task-34' coro=<Dispatcher._process_polling_updates() done, defined at D:\учёба\Python\08. Знакомство с языком Python\Семинары\HomeWork_Venv\homework9_task2\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=TypeError("stop_poll() missing 2 required positional arguments: 'chat_id' and 'message_id'")>
+Traceback (most recent call last):
+  File "D:\учёба\Python\08. Знакомство с языком Python\Семинары\HomeWork_Venv\homework9_task2\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "D:\учёба\Python\08. Знакомство с языком Python\Семинары\HomeWork_Venv\homework9_task2\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "D:\учёба\Python\08. Знакомство с языком Python\Семинары\HomeWork_Venv\homework9_task2\venv\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "D:\учёба\Python\08. Знакомство с языком Python\Семинары\HomeWork_Venv\homework9_task2\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "D:\учёба\Python\08. Знакомство с языком Python\Семинары\HomeWork_Venv\homework9_task2\venv\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "d:/учёба/Python/08. Знакомство с языком Python/Семинары/HomeWork_Venv/homework10_task1/bot_telegram.py", line 37, in quit_handler
+    bot.stop_poll()
+TypeError: stop_poll() missing 2 required positional arguments: 'chat_id' and 'message_id'
+2023-01-15 03:54:37,489: INFO stop_polling-433 Stop polling...
+2023-01-15 03:54:37,491: WARNING start_polling-329 Goodbye!
